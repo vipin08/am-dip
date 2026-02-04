@@ -11,12 +11,11 @@ pipeline {
         }
 
         stage('Build Docker Image') {
-            steps {
-                dir('app') {
-                    bat 'docker build -t am-dip-app .'
-                }
-            }
-        }
+    steps {
+        bat 'docker build -t am-dip-app .'
+    }
+}
+
 
         stage('Deploy to Kubernetes') {
             steps {
