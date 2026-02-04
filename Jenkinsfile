@@ -12,9 +12,7 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                dir('app') {
-                    bat 'docker build -t am-dip-app .'
-                }
+                bat 'docker build -t am-dip-app .'
             }
         }
 
