@@ -6,22 +6,23 @@ pipeline {
         stage('Clone Code') {
             steps {
                 git branch: 'main',
-                    url: 'https://github.com/vipin08/am-dip.git'
+                    url: 'https://github.com/<YOUR_USERNAME>/am-dip.git'
             }
         }
 
         stage('Build Docker Image') {
             steps {
-                bat 'docker build -t am-dip-app .'
+                dir('app') {
+                    bat 'docker build -t am-dip-app .'
+                }
             }
         }
 
-        stage('Run Container') {
+        stage('Deploy to Kubernetes') {
             steps {
-                bat 'docker rm -f am-dip-container || exit 0'
-                bat 'docker run -d -p 5001:5000 --name am-dip-container am-dip-app'
+                bat 'kubectl apply -f k8s/deployment.yaml'
+                bat 'kubectl apply -f k8s/service.yaml'
             }
         }
-
     }
 }
