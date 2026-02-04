@@ -17,11 +17,11 @@ pipeline {
         }
 
         stage('Run Container') {
-    steps {
-        bat 'docker rm -f am-dip-container || exit 0'
-        bat 'docker run -d -p 5001:5000 --name am-dip-container am-dip-app'
-    }
-}
+            steps {
+                bat 'docker rm -f am-dip-container || exit 0'
+                bat 'docker run -d -p 5001:5000 --name am-dip-container am-dip-app'
+            }
+        }
 
     }
 }
