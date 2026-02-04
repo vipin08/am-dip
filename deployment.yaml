@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: am-dip-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: am-dip
+  template:
+    metadata:
+      labels:
+        app: am-dip
+    spec:
+      containers:
+      - name: am-dip
+        image: am-dip-app
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 5000
