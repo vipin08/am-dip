@@ -17,10 +17,12 @@ pipeline {
         }
 
         stage('Run Container') {
-            steps {
-                bat 'docker rm -f am-dip-container || exit 0'
-                bat 'docker run -d -p 5000:5000 --name am-dip-container am-dip-app'
-            }
+           steps {
+               bat 'docker ps -q --filter "publish=5000" | findstr . && docker stop $(docker ps -q --filter "publish=5000") || exit 0'
+               bat 'docker rm -f am-dip-container || exit 0'
+               bat 'docker run -d -p 5000:5000 --name am-dip-container am-dip-app'
+           }
         }
+
     }
 }
