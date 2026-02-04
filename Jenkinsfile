@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    environment {
+        KUBECONFIG = "C:\\ProgramData\\Jenkins\\.kube\\config"
+    }
+
     stages {
 
         stage('Clone Code') {
@@ -11,16 +15,15 @@ pipeline {
         }
 
         stage('Build Docker Image') {
-    steps {
-        bat 'docker build -t am-dip-app .'
-    }
-}
-
+            steps {
+                bat 'docker build -t am-dip-app .'
+            }
+        }
 
         stage('Deploy to Kubernetes') {
             steps {
-                bat 'kubectl apply -f deployment.yaml'
-                bat 'kubectl apply -f service.yaml'
+                bat 'kubectl apply -f deployment.yaml --validate=false'
+                bat 'kubectl apply -f service.yaml --validate=false'
             }
         }
     }
