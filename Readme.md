@@ -4,7 +4,7 @@ AM-DIP is a DevOps and cloud-native project that demonstrates how a containerize
 
 The focus of this project is not application complexity, but **system design, automation, monitoring, and intelligent decision-making**, which are core responsibilities in real-world DevOps and SRE roles.
 
--------------------------------------------------------------------
+------------------------------------------------------------------
 
 ## 🚀 What Problem Does AM-DIP Solve?
 
